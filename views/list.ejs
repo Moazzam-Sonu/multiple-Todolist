@@ -1,0 +1,48 @@
+<%-include('partials/header.ejs') %>
+<div class="container">
+  <div class="box" id="heading">
+    <h1>
+      <%= listTitle %>
+    </h1>
+  </div>
+  <div class="box">
+    <%newListItems.forEach((data)=>{%>
+      <form action="/delete" method="post">
+        <div class="item-box">
+          <input type="checkbox" name="box" value="<%=data._id%>" onChange="this.form.submit()">
+          <span>
+            <%= data.name %>
+          </span>
+        </div>
+        <input type="hidden" name="listName" value="<%= listTitle%>" />
+      </form>
+      <%})%>
+
+
+        <form class="item" action="/" method="post">
+          <input type="text" name="newItem" id="" placeholder="enter item">
+          <button type="submit" name="list" value="<%= listTitle %>">+</button>
+        </form>
+  </div>
+  <div class="box">
+    <form id="myForm" action="">
+      <label for="new1">Create new List</label>
+      <input type="text" name="new1" id="new1" placeholder="Enter List Title">
+      <button type="button" onclick="updateFormAction()">+</button>
+    </form>
+  </div>
+</div>
+
+      
+
+
+
+<script>
+function updateFormAction() {
+    var inputValue = document.getElementById("new1").value;
+    document.getElementById("myForm").action = inputValue;
+    document.getElementById("myForm").submit();
+}
+</script>
+
+  <%-include('partials/footer.ejs') %>
